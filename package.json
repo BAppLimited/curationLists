@@ -1,0 +1,25 @@
+{
+  "name": "curationlists",
+  "version": "1.0.0",
+  "description": "\"# curationLists\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BAppLimited/curationLists.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BAppLimited/curationLists/issues"
+  },
+  "homepage": "https://github.com/BAppLimited/curationLists#readme",
+  "dependencies": {
+    "@bosonprotocol/core-sdk": "^1.25.0-alpha.43",
+    "@bosonprotocol/ethers-sdk": "^1.12.0-alpha.29",
+    "ethers": "^5.7.2"
+  }
+}
