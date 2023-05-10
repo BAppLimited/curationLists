@@ -9,21 +9,24 @@ jobs:
   update-curation-lists:
     name: Update Curation Lists
     runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: "16"
           cache: "npm"
-      - run: npm ci
-      - name: Launch script
+      - name: Install Dependencies
+        run: npm ci
+      - name: Launch Update Script
         run: npm run update
-      - name: Set github bot
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-      - name: Commit and push changes
-        run: |
-          git add .
-          git commit -m "chore: update curation lists - CRON JOB [skip ci]"
-          git push
+      # Commit all changed files back to the repository
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "chore: update curation lists - CRON JOB [skip ci]"
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: Author <actions@github.com>
