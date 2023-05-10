@@ -1,0 +1,29 @@
+name: Update Curation Lists
+
+on:
+  schedule:
+    - cron: "*/5 * * * *" # run every 5 min
+  workflow_dispatch:
+
+jobs:
+  update-curation-lists:
+    name: Update Curation Lists
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "16"
+          cache: "npm"
+      - run: npm ci
+      - name: Launch script
+        run: npm run update
+      - name: Set github bot
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "chore: update curation lists - CRON JOB [skip ci]"
+          git push
