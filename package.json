@@ -4,7 +4,7 @@
   "description": "\"# curationLists\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "update": "node ./scripts/update.js"
   },
   "repository": {
     "type": "git",
